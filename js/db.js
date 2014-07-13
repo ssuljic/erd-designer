@@ -61,6 +61,7 @@ DB.createTable = function(name) {
 	// css positions
 	table.top = "auto";
 	table.left = "auto";
+	table.refs = [];
 	table.attributes = [{ 
 		"name": "id", 
 		"type":"INT", 
