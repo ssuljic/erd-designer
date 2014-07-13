@@ -1,0 +1,73 @@
+body {
+    background-image: url("../img/bg.png");
+    background-size: 100px;
+}
+#svgarea { 
+    position: relative; 
+    width: 78%; 
+    min-height: 1000px; 
+    display: inline;
+    float: left;
+    margin-left: 20px;
+}
+#svgarea svg { 
+    position:absolute; 
+    top:0; 
+    left:0; 
+    z-index:0; 
+    width: 100%;
+    min-height: 700px;
+}
+#content {
+    display: inline;
+    width: 100%;
+}
+#panel {
+    width: 300px;
+    min-height: 700px;
+    float: left;
+}
+#panel h1 {
+    text-align: center;
+}
+#toolbox {
+    width: 100%;
+    min-height: 100px;
+    float: left;
+    z-index: 1000;
+}
+input[type="button"] {
+    margin-left: 15px;
+    margin-top: 10px;
+    width: 120px;
+}
+#workarea {
+    min-height: 1000px;
+    width: 100%;
+    display: inline;
+    float: left;
+}
+.draggable { 
+    min-width: 150px; 
+    min-height: 150px; 
+    position: absolute;
+    border: 1px solid black;
+    background-color: white;
+    z-index: 1;
+}
+.panel-title {
+    text-align: center;
+}
+.draggable h4 {
+    background-color: #0099FF;
+    margin-top: -5px;
+    text-align: center;
+    width: 100%;
+}
+.selected_table {
+    border: 1px solid black;
+}
+#logo {
+    width: 14%;
+    margin-bottom: 7px;
+}
