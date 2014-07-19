@@ -2,56 +2,8 @@
 var DB = {};
 
 DB.database = {
-	"tables": [{
-			'name': 'test',
-			'top': '100px',
-			'left': '100px',
-			'id': 1,
-			'refs': [], // For FK's
-			'attributes': [{
-				'name':'id',
-				'type':'INT',
-				'size':11,
-				'constraints':['PRIMARY KEY']
-			}]
-		},
-		{
-			'name': 'test2',
-			'top': '50px',
-			'left': '600px',
-			'id': 2,
-			'refs': [1],
-			'attributes': [{
-				'name':'id',
-				'type':'INT',
-				'size':11,
-				'constraints':['PRIMARY KEY']
-			}, {
-				'name':'test_id',
-				'type':'INT',
-				'size':11,
-				'constraints':['FOREIGN KEY']
-			}]
-		},
-		{
-			'name': 'test3s',
-			'top': '400px',
-			'left': '300px',
-			'id': 3,
-			'refs': [2],
-			'attributes': [{
-				'name':'id',
-				'type':'INT',
-				'size':11,
-				'constraints':['PRIMARY KEY']
-			}, {
-				'name':'test2_id',
-				'type':'INT',
-				'size':11,
-				'constraints':['FOREIGN KEY']
-			}]
-		}
-	]
+	"name": 'sample',
+	"tables": []
 };
 
 DB.createTable = function(name) {
@@ -187,3 +139,50 @@ DB.redrawLines = function() {
 		}
 	}
 }
+
+DB.toMySQL = function () {
+	var script = '';
+	fk_constraints = '';
+	for(var i=0; i<DB.database.tables.length; i++) {
+		script += 'CREATE TABLE IF NOT EXISTS `' + DB.database.tables[i].name + '` (\n';
+		var constraints = '';
+		var fk_num = 0;
+		for(var j=0; j<DB.database.tables[i].attributes.length; j++) {
+			script += '\t`' + DB.database.tables[i].attributes[j].name + '` ' + DB.database.tables[i].attributes[j].type;
+			if(DB.database.tables[i].attributes[j].size !== '') {
+				script += '(' + DB.database.tables[i].attributes[j].size + ')';
+			}  
+			script += ' NOT NULL';
+			if(DB.database.tables[i].attributes[j].name == 'id') {
+				 script += ' AUTO_INCREMENT';
+			}
+			for(var k=0; k<DB.database.tables[i].attributes[j].constraints.length; k++) {
+				if(DB.database.tables[i].attributes[j].constraints[k] == 'PRIMARY KEY') {
+					constraints += '\t' + DB.database.tables[i].attributes[j].constraints[k] + ' (`' + DB.database.tables[i].attributes[j].name + '`),\n';
+				}
+				else if (DB.database.tables[i].attributes[j].constraints[k] == 'FOREIGN KEY') {
+					fk_constraints += 'ALTER TABLE `' + DB.database.tables[i].name + '` ADD FOREIGN KEY (' + DB.database.tables[i].attributes[j].name + ') REFERENCES `' + DB.database.tables[DB.database.tables[i].refs[fk_num] - 1].name +  '` (`id`);\n';
+					fk_num++;
+				}
+			}
+			script += ',\n';
+		}
+		script += constraints;
+		// trim last comma
+		script = script.slice(0, -2); 
+		script += '\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
+
+		script += '\n\n';
+	}
+	script += fk_constraints;
+	return script;
+}
+
+
+
+
+
+
+
+
+

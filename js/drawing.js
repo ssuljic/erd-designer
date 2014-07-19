@@ -18,4 +18,9 @@ $(function() {
 
 	});	
 
+	$("#genmysql").click(function() {
+		content = DB.toMySQL();
+		$("#modal-content textarea").html(content);
+		$('#myModal').modal();
+	})
 });
