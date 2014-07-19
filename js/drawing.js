@@ -21,6 +21,7 @@ $(function() {
 	$("#genmysql").click(function() {
 		content = DB.toMySQL();
 		$("#modal-content textarea").html(content);
+		$("#myModalLabel").text("MySQL");
 		$('#myModal').modal();
 	})
 });
