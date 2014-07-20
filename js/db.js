@@ -116,8 +116,12 @@ DB.redraw = function() {
 DB.redrawLines = function() {
 	var svg = $("#svgarea").svg('get');
 	svg.clear();
+	var max_left = 0;
 
 	for(var i=0; i<DB.database.tables.length; i++) {
+		if(parseInt(DB.database.tables[i].left.slice(0, -2)) > max_left) {
+			max_left = parseInt(DB.database.tables[i].left.slice(0, -2))
+		}
 		if(DB.database.tables[i].refs.length > 0) {
 			var y1 = parseInt(DB.database.tables[i].top.slice(0, -2));
 			var x1 = parseInt(DB.database.tables[i].left.slice(0, -2));
@@ -138,6 +142,7 @@ DB.redrawLines = function() {
 			}
 		}
 	}
+	$("#svgarea").css("width", max_left + 'px');
 }
 
 DB.toMySQL = function () {

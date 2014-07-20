@@ -77,9 +77,6 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#svgarea').svg();
-				getSample();
-				DB.toMySQL();
-				DB.redrawLines();
 			});
 		</script>
 	</body>

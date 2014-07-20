@@ -3,7 +3,7 @@ body {
     background-size: 100px;
 }
 #svgarea { 
-    position: relative; 
+    position: absolute; 
     width: 78%; 
     min-height: 1000px; 
     display: inline;
