@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/config.js"></script>
+		<script type="text/javascript" src="js/types_mapping.js"></script>
 		<script type="text/javascript" src="js/db.js"></script>
 		<script type="text/javascript" src="js/sample.js"></script>
 		<script type="text/javascript" src="js/drawing.js"></script>
@@ -55,9 +56,9 @@
 						    Generate SQL DDL Script<span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="javascript:void(0)" id="genmysql">MySQL</a></li>
-						    <li><a href="javascript:alert('Not implemented');">PostgreSQL</a></li>
-						    <li><a href="javascript:alert('Not implemented');">SQLite</a></li>
+						    <li><a href="javascript:void(0);" class="genscript" id="mysql">MySQL</a></li>
+						    <li><a href="javascript:void(0);" class="genscript" id="postgresql">PostgreSQL</a></li>
+						    <li><a href="javascript:void(0);" class="genscript" id="oracle">Oracle</a></li>
 						  </ul>
 						</div>
 						<br>

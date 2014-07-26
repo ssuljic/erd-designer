@@ -9,27 +9,27 @@ function getSample() {
 				'refs': [2], // For FK's
 				'attributes': [{
 					'name':'id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':11,
 					'constraints':['PRIMARY KEY']
 				}, {
 					'name':'first_name',
-					'type':'VARCHAR',
+					'type':'Varchar',
 					'size':20,
 					'constraints':[]
 				}, {
 					'name':'last_name',
-					'type':'VARCHAR',
+					'type':'Varchar',
 					'size':20,
 					'constraints':[]
 				}, {
 					'name':'date_of_birth',
-					'type':'DATE',
+					'type':'Date',
 					'size':'',
 					'constraints':[]
 				}, {
 					'name':'teacher_id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':'11',
 					'constraints':['FOREIGN KEY']
 				}]
@@ -42,12 +42,12 @@ function getSample() {
 				'refs': [],
 				'attributes': [{
 					'name':'id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':11,
 					'constraints':['PRIMARY KEY']
 				}, {
 					'name':'name',
-					'type':'VARCHAR',
+					'type':'Varchar',
 					'size':20,
 					'constraints':[]
 				}]
@@ -60,12 +60,12 @@ function getSample() {
 				'refs': [1,4],
 				'attributes': [{
 					'name':'student_id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':11,
 					'constraints':['FOREIGN KEY']
 				}, {
 					'name':'course_id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':11,
 					'constraints':['FOREIGN KEY']
 				}]
@@ -78,12 +78,12 @@ function getSample() {
 				'refs': [],
 				'attributes': [{
 					'name':'id',
-					'type':'INT',
+					'type':'Numeric',
 					'size':11,
 					'constraints':['PRIMARY KEY']
 				}, {
 					'name':'description',
-					'type':'TEXT',
+					'type':'LongVarchar',
 					'size':'',
 					'constraints':[]
 				}]

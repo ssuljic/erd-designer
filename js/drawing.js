@@ -18,10 +18,11 @@ $(function() {
 
 	});	
 
-	$("#genmysql").click(function() {
-		content = DB.toMySQL();
+	$(".genscript").click(function() {
+		content = DB.toSQL($(this).attr('id'));
 		$("#modal-content textarea").html(content);
-		$("#myModalLabel").text("MySQL");
+		$("#myModalLabel").text($(this).attr('id').toUpperCase());
 		$('#myModal').modal();
-	})
+	});
+
 });

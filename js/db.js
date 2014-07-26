@@ -145,20 +145,33 @@ DB.redrawLines = function() {
 	$("#svgarea").css("width", max_left + 'px');
 }
 
-DB.toMySQL = function () {
+DB.toSQL = function (dbms) {
 	var script = '';
 	fk_constraints = '';
 	for(var i=0; i<DB.database.tables.length; i++) {
-		script += 'CREATE TABLE IF NOT EXISTS `' + DB.database.tables[i].name + '` (\n';
+		if(dbms === 'mysql') {
+			script += 'DROP TABLE IF EXISTS `' + DB.database.tables[i].name + '`;\n\n';
+		}
+		script += 'CREATE TABLE `' + DB.database.tables[i].name + '` (\n';
 		var constraints = '';
 		var fk_num = 0;
 		for(var j=0; j<DB.database.tables[i].attributes.length; j++) {
-			script += '\t`' + DB.database.tables[i].attributes[j].name + '` ' + DB.database.tables[i].attributes[j].type;
-			if(DB.database.tables[i].attributes[j].size !== '') {
+			script += '\t`' + DB.database.tables[i].attributes[j].name + '` ';
+			if (DB.database.tables[i].attributes[j].name === 'id' && dbms === 'postgresql') {
+				script += 'SERIAL'
+			}
+			else {
+				script += match_type(DB.database.tables[i].attributes[j].type, dbms);
+			}
+			if(dbms === 'postgresql' && DB.database.tables[i].attributes[j].type === 'Varchar' && DB.database.tables[i].attributes[j].size !== 0) {
+				script += '(' + DB.database.tables[i].attributes[j].size + ')';
+			}
+			else if(dbms !== 'postgresql' && DB.database.tables[i].attributes[j].size !== '') {
 				script += '(' + DB.database.tables[i].attributes[j].size + ')';
 			}  
-			script += ' NOT NULL';
-			if(DB.database.tables[i].attributes[j].name == 'id') {
+			if(dbms !== 'postgresql') 
+				script += ' NOT NULL';
+			if(DB.database.tables[i].attributes[j].name == 'id' && dbms !== 'postgresql') {
 				 script += ' AUTO_INCREMENT';
 			}
 			for(var k=0; k<DB.database.tables[i].attributes[j].constraints.length; k++) {
@@ -174,20 +187,12 @@ DB.toMySQL = function () {
 		}
 		script += constraints;
 		// trim last comma
-		script = script.slice(0, -2); 
-		script += '\n) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
-
+		script = script.slice(0, -2);
+		script += '\n);';
 		script += '\n\n';
 	}
 	script += fk_constraints;
+	if(dbms === 'postgresql') 
+		script = script.replace(/`/g, '"');
 	return script;
 }
-
-
-
-
-
-
-
-
-
