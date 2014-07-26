@@ -16,7 +16,7 @@ DB.createTable = function(name) {
 	table.refs = [];
 	table.attributes = [{ 
 		"name": "id", 
-		"type":"INT", 
+		"type":"Numeric", 
 		"size": 11, 
 		"constraints": ["PRIMARY KEY"],
 	}];
