@@ -41,12 +41,12 @@
 						<div class="panel-title"><h1><img src="img/logo.png" id="logo"/>ERD Designer</h1></div>
 					</div>
 					<div class="panel-body">
-						<div id="toolbox">
+						<div id="toolbox" style="margin-bottom:20px;">
 						 	<h3>Add table</h3>
 							<div>
 							    <form id="add_table">
-							    	<label>Table name:</label><input type="text" id="table_name" />
-							    	<input type="button" value="Add table" id="add_table_btn" />
+							    	<label for="table_name">Table name:</label><input class="form-control" type="text" id="table_name" />
+							    	<input class="btn btn-info" type="button" value="Add table" id="add_table_btn" />
 							    </form>
 							</div>
 					 	</div>
