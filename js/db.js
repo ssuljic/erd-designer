@@ -82,7 +82,7 @@ DB.redraw = function() {
 		this.className = this.className.replace("info", "primary active_table");
 		$("#edit_form").empty();
 		$("#edit_form h5").text($(this).find("h3").text());
-		$("#edit_form").append("<div id='table_attributes'><div id='edit_attribute_list'></div><input type='button' value='Add attribute' id='add_attribute_btn' /></div>");
+		$("#edit_form").append("<div id='table_attributes'><div id='edit_attribute_list'></div><input class='btn btn-info' type='button' value='Add attribute' id='add_attribute_btn' /></div>");
 		var table_id = $('.active_table').find('.table_id').val();
 		$("#add_attribute_btn").on("click", function() {
 			var attr = {};
