@@ -114,7 +114,8 @@ DB.redraw = function() {
 
 
 DB.redrawLines = function() {
-	var svg = $("#svgarea").svg('get');
+	var svg = $("#svgarea").svg('get'); //test inline comments
+	var non_used_variable = 0
 	svg.clear();
 	var max_left = 0;
 
@@ -148,6 +149,7 @@ DB.redrawLines = function() {
 DB.toSQL = function (dbms) {
 	var script = '';
 	fk_constraints = '';
+		var bad_indentation = ''
 	for(var i=0; i<DB.database.tables.length; i++) {
 		if(dbms === 'mysql') {
 			script += 'DROP TABLE IF EXISTS `' + DB.database.tables[i].name + '`;\n\n';
