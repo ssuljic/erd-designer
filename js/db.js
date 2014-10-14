@@ -149,7 +149,7 @@ DB.redrawLines = function() {
 DB.toSQL = function (dbms) {
 	var script = '';
 	fk_constraints = '';
-		var bad_indentation = ''
+	var bad_indentation = ''
 	for(var i=0; i<DB.database.tables.length; i++) {
 		if(dbms === 'mysql') {
 			script += 'DROP TABLE IF EXISTS `' + DB.database.tables[i].name + '`;\n\n';
