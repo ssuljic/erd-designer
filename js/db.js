@@ -51,7 +51,7 @@ DB.changePosition = function(id, position) {
 } 
 
 DB.redraw = function() {
-	non_used_variable = 0
+	var nonUsedVariable = 0;
 	$("#workarea").empty();
 	for(var i=0; i<DB.database.tables.length; i++) {
 
